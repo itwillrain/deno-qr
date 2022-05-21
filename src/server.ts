@@ -1,10 +1,10 @@
 import { Color, figlet, log, qrcode, serve } from './deps.ts';
 
 function handler(req: Request): Response {
-	// const url = new URL(req.url);
-	// const targetUrl = url.searchParams.get('url') || '';
+	const url = new URL(req.url);
+	const targetUrl = url.searchParams.get('url') || '';
 
-	// const qrCode = await qrcode(targetUrl);
+	log.info(url);
 
 	return new Response('Hello World!', {
 		headers: { 'content-type': 'text/plain' },
