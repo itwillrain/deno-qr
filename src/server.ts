@@ -11,6 +11,9 @@ function handler(req: Request): Response {
 	});
 }
 
-log.info('🦕 Listening on http://localhost:8000');
+const PORT = parseInt(Deno.env.get('PORT') ?? '8000');
 
-serve(handler);
+log.info(`🦕  Starting server on port ${PORT}....`);
+serve(handler, {
+	port: PORT,
+});
