@@ -1,4 +1,4 @@
-import { Color, figlet, log, qrcode, serve } from './deps.ts';
+import { figlet, log, qrcode, serve } from './deps.ts';
 import { isUrl } from './validater/mod.ts';
 
 async function handler(req: Request): Promise<Response> {
@@ -34,6 +34,9 @@ async function handler(req: Request): Promise<Response> {
 }
 
 const PORT = parseInt(Deno.env.get('PORT') ?? '8000');
+const signature = await figlet.text('Deno! Demo!', 'starwars');
+
+log.info(signature);
 log.info(`🦕  Starting server on port ${PORT}....`);
 
 serve(handler, {

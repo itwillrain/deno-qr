@@ -7,13 +7,12 @@
   // Linter設定
   "lint": {
     "files": {
-      "include": ["src/"],
-      "exclude": ["src/testdata/"]
+      "include": ["src/"]
     },
     "rules": {
       "tags": ["recommended"],
-      "include": ["ban-untagged-todo"],
-      "exclude": ["no-unused-vars"]
+      "include": [],
+      "exclude": []
     }
   },
   // Formatter設定
