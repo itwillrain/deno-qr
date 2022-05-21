@@ -11,7 +11,7 @@ function handler(req: Request): Response {
 				<head>
 				</head>
 				<body>
-					<h1>Example</h1>
+					<h1>${targetUrl}</h1>
 				</body>
 			</html>`,
 		{
