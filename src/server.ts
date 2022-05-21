@@ -1,11 +1,20 @@
 import { Color, figlet, log, qrcode, serve } from './deps.ts';
+import { isUrl } from './validater/mod.ts';
 
 async function handler(req: Request): Promise<Response> {
 	const url = new URL(req.url);
 	const targetUrl = url.searchParams.get('url') || '';
 	const qrCode = await qrcode(targetUrl);
 
-	log.info(targetUrl);
+	if (!isUrl(targetUrl)) {
+		const body = JSON.stringify({ message: 'Not Found' });
+		return new Response(body, {
+			status: 404,
+			headers: {
+				'content-type': 'applocation/json; charset=utf-8',
+			},
+		});
+	}
 
 	return new Response(
 		`<html>
@@ -25,8 +34,8 @@ async function handler(req: Request): Promise<Response> {
 }
 
 const PORT = parseInt(Deno.env.get('PORT') ?? '8000');
-
 log.info(`🦕  Starting server on port ${PORT}....`);
+
 serve(handler, {
 	port: PORT,
 });
