@@ -1,17 +1,19 @@
 import { Color, figlet, log, qrcode, serve } from './deps.ts';
 
-function handler(req: Request): Response {
+async function handler(req: Request): Promise<Response> {
 	const url = new URL(req.url);
 	const targetUrl = url.searchParams.get('url') || '';
+	const qrCode = await qrcode(targetUrl);
 
-	log.info(url);
+	log.info(targetUrl);
 
 	return new Response(
 		`<html>
 				<head>
 				</head>
 				<body>
-					<h1>${targetUrl}</h1>
+					<h1>QR Code Generator</h1>
+					<img src="${qrCode}">
 				</body>
 			</html>`,
 		{
