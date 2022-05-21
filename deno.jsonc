@@ -1,0 +1,39 @@
+{
+  // TypeScriptの設定
+  "compilerOptions": {
+    "lib": ["deno.window"],
+    "strict": true
+  },
+  // Linter設定
+  "lint": {
+    "files": {
+      "include": ["src/"],
+      "exclude": ["src/testdata/"]
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
+      "exclude": ["no-unused-vars"]
+    }
+  },
+  // Formatter設定
+  "fmt": {
+    "files": {
+      "include": ["src/"],
+      "exclude": [".vscode", ".env"]
+    },
+    "options": {
+      "useTabs": true,
+      "lineWidth": 100,
+      "indentWidth": 4,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  },
+  // Taskの設定
+  "tasks": {
+    "cache:lock": "deno cache --lock=lock.json --lock-write ./src/deps.ts",
+    "cache:reload": "deno cache --reload --lock=lock.json ./src/deps.ts",
+    "dev": "deno run -A --watch ./src/server.ts"
+  }
+}
