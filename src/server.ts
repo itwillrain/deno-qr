@@ -1,21 +1,10 @@
 import { Color, figlet, log, qrcode, serve } from './deps.ts';
-import { isUrl } from './validater/mod.ts';
 
-async function handler(req: Request): Promise<Response> {
+function handler(req: Request): Response {
 	const url = new URL(req.url);
 	const targetUrl = url.searchParams.get('url') || '';
 
-	if (!targetUrl || !isUrl(targetUrl)) {
-		const body = JSON.stringify({ message: 'Not Found' });
-		return new Response(body, {
-			status: 404,
-			headers: {
-				'content-type': 'applocation/json; charset=utf-8',
-			},
-		});
-	}
-
-	const qrCode = await qrcode(targetUrl);
+	// const qrCode = await qrcode(targetUrl);
 
 	return new Response(
 		`<html lang="ja">
@@ -24,7 +13,9 @@ async function handler(req: Request): Promise<Response> {
       <body>
         <h1>QRCode</h1>
 				<div>
-					<img src=${qrCode}>
+					<img src=${targetUrl}>
+					
+					<p>${targetUrl}</p>
 				</div>	
       </body>
     </html>`,
