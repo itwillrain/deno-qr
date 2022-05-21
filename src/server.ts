@@ -6,9 +6,20 @@ function handler(req: Request): Response {
 
 	log.info(url);
 
-	return new Response('Hello World!', {
-		headers: { 'content-type': 'text/plain' },
-	});
+	return new Response(
+		`<html>
+				<head>
+				</head>
+				<body>
+					<h1>Example</h1>
+				</body>
+			</html>`,
+		{
+			headers: {
+				'content-type': 'text/html; charset=utf-8',
+			},
+		},
+	);
 }
 
 const PORT = parseInt(Deno.env.get('PORT') ?? '8000');
