@@ -1,8 +1,16 @@
-import { serve } from 'https://deno.land/std@0.114.0/http/server.ts';
+import { Color, figlet, log, qrcode, serve } from './deps.ts';
 
-console.log('Listening on http://localhost:8000');
-serve((_req) => {
+function handler(req: Request): Response {
+	// const url = new URL(req.url);
+	// const targetUrl = url.searchParams.get('url') || '';
+
+	// const qrCode = await qrcode(targetUrl);
+
 	return new Response('Hello World!', {
 		headers: { 'content-type': 'text/plain' },
 	});
-});
+}
+
+log.info('🦕 Listening on http://localhost:8000');
+
+serve(handler);
