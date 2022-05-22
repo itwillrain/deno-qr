@@ -19,6 +19,7 @@ async function handler(req: Request): Promise<Response> {
 	return new Response(
 		`<html>
 				<head>
+					<title>Deno QR Code Demo!</title>	
 				</head>
 				<body>
 					<h1>QR Code Generator</h1>
