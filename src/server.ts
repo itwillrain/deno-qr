@@ -1,5 +1,5 @@
 import { log, qrcode, serve } from './deps.ts';
-import { isUrl } from './validater/mod.ts';
+import { isUrl } from './validator/mod.ts';
 
 async function handler(req: Request): Promise<Response> {
 	const url = new URL(req.url);
